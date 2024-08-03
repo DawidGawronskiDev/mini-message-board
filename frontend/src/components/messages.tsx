@@ -8,7 +8,7 @@ type MessagesProps = {
 
 const Messages = ({ messages }: MessagesProps) => {
   return (
-    <ul className="space-y-4 my-4">
+    <ul className="space-y-6 my-2">
       {messages.map((message, index) => (
         <>
           <Message key={message.id} message={message} />

@@ -13,13 +13,17 @@ const generageBackground = () => {
   return `linear-gradient(to bottom right, ${colorOne}, ${colorTwo})`;
 };
 
-const Avatar = () => {
+type AvatarProps = {
+  className: string;
+};
+
+const Avatar = ({ className = "" }: AvatarProps) => {
   return (
     <div
       style={{
         background: generageBackground(),
       }}
-      className="w-10 aspect-square rounded-full"
+      className={"w-10 aspect-square rounded-full " + className}
     ></div>
   );
 };

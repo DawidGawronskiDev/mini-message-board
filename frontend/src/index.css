@@ -68,4 +68,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  .message {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 1.5rem;
+  }
 }

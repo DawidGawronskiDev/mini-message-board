@@ -9,21 +9,19 @@ type MessageProps = {
 const Message = ({ message }: MessageProps) => {
   return (
     <li>
-      <div className="flex items-start gap-5 p-5">
-        <Avatar />
-        <div className="flex flex-col gap-5">
-          <div>
-            <span className="font-bold">{message.user}</span>
-            <p className="text-xs opacity-50">{`Sent ${formatDistance(
-              new Date(),
-              message.added,
-              {
-                includeSeconds: true,
-              }
-            )} ago`}</p>
-          </div>
-          <p>{message.text}</p>
+      <div className="grid grid-cols-[40px_1fr] gap-4">
+        <Avatar className="row-span-2" />
+        <div>
+          <p className="font-bold">{message.user}</p>
+          <p className="text-xs opacity-50">{`Sent ${formatDistance(
+            new Date(),
+            message.added,
+            {
+              includeSeconds: true,
+            }
+          )} ago`}</p>
         </div>
+        <p className="break-all">{message.text}</p>
       </div>
     </li>
   );

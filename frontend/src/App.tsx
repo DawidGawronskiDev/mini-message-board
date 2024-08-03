@@ -3,6 +3,7 @@ import { type Message } from "./types";
 import useFetch from "./hooks/useFetch";
 import Messages from "./components/messages";
 import Header from "./components/header";
+import MessageModal from "./components/message-modal";
 
 export default function App() {
   const {
@@ -14,12 +15,10 @@ export default function App() {
     "Failed to fetch messages"
   );
 
-  console.log(messages);
-
   let content: ReactNode;
 
   if (isLoading) {
-    content = <p>Loading...</p>;
+    content = <p className="animate-pulse">Loading...</p>;
   }
 
   if (error) {
@@ -30,10 +29,15 @@ export default function App() {
     content = <Messages messages={messages} />;
   }
 
+  if (messages && messages.length === 0) {
+    content = <p className="opacity-50">There are no messages</p>;
+  }
+
   return (
     <main className="font-inter container">
       <Header />
       {content}
+      <MessageModal />
     </main>
   );
 }

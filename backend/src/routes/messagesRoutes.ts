@@ -16,7 +16,7 @@ router.post("/", (req: Request, res: Response) => {
     return res.status(404).json({ message: "User and text are required." });
   }
 
-  writeMessage([...readMessages(), createMessage(user, text)]);
+  writeMessage([createMessage(user, text), ...readMessages()]);
 
   res.status(200).json({ message: "Message created successfully." });
 });
