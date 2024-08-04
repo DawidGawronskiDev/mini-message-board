@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "./ui/textarea";
 import axios from "axios";
 import { useQueryClient } from "@tanstack/react-query";
+import { apiUrl } from "@/lib/urls";
 
 const messageSchema = z.object({
   user: z
@@ -41,7 +42,7 @@ const MessageForm = () => {
     const { user, text } = values;
 
     await axios
-      .post("http://localhost:3000/messages", {
+      .post(apiUrl + "messages", {
         user: user,
         text: text,
       })

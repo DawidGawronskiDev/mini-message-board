@@ -10,10 +10,10 @@ const Messages = ({ messages }: MessagesProps) => {
   return (
     <ul className="space-y-6">
       {messages.map((message, index) => (
-        <>
-          <Message key={message.id} message={message} index={index} />
+        <li key={message.id} className="space-y-6">
+          <Message message={message} index={index} />
           {index < messages.length - 1 && <Separator />}
-        </>
+        </li>
       ))}
     </ul>
   );
