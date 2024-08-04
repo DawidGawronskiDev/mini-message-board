@@ -15,6 +15,8 @@ import { Textarea } from "./ui/textarea";
 import axios from "axios";
 import { useQueryClient } from "@tanstack/react-query";
 import { apiUrl } from "@/lib/urls";
+import { useContext } from "react";
+import ModalContext from "../store/modalContext";
 
 const messageSchema = z.object({
   user: z
@@ -28,6 +30,7 @@ const messageSchema = z.object({
 });
 
 const MessageForm = () => {
+  const { closeModal } = useContext(ModalContext);
   const queryClient = useQueryClient();
 
   const form = useForm<z.infer<typeof messageSchema>>({
@@ -48,6 +51,7 @@ const MessageForm = () => {
       })
       .then(() => {
         queryClient.invalidateQueries({ queryKey: ["messages"] });
+        closeModal();
       })
       .catch((error) => console.error(error));
   };

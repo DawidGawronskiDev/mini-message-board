@@ -10,7 +10,7 @@ const Messages = ({ messages }: MessagesProps) => {
   return (
     <ul className="space-y-6">
       {messages.map((message, index) => (
-        <li key={message.id} className="space-y-6">
+        <li key={message._id} className="space-y-6">
           <Message message={message} index={index} />
           {index < messages.length - 1 && <Separator />}
         </li>

@@ -6,7 +6,7 @@ type MessageTimeProps = {
 };
 
 const MessageTime = ({ added }: MessageTimeProps) => {
-  const [key, setKey] = useState(0);
+  const [, setKey] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {

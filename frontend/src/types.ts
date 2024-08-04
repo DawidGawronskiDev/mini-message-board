@@ -1,12 +1,12 @@
 export type Message = {
-  id: string;
+  _id: string;
   user: string;
   text: string;
   added: string;
 };
 
 export type Messages = {
-  id: string;
+  _id: string;
   user: string;
   text: string;
   added: string;

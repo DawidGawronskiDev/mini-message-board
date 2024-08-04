@@ -13,6 +13,8 @@ export default function App() {
     isError,
   } = useQuery({ queryKey: ["messages"], queryFn: getMessages });
 
+  console.log(messages);
+
   let content: ReactNode;
 
   if (isLoading) {
