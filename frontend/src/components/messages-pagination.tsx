@@ -19,7 +19,6 @@ const MessagesPagination = ({
   handleCurrentPage,
   size,
 }: MessagesPaginationProps) => {
-  console.log(currentPage, Math.round(size));
   return (
     <Pagination>
       <PaginationContent>
