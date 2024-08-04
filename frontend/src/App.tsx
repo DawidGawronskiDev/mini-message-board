@@ -1,19 +1,16 @@
 import { type ReactNode } from "react";
-import { type Message } from "./types";
-import useFetch from "./hooks/useFetch";
 import Messages from "./components/messages";
 import Header from "./components/header";
 import MessageModal from "./components/message-modal";
+import { useQuery } from "@tanstack/react-query";
+import { getMessages } from "./utils/http";
 
 export default function App() {
   const {
     data: messages,
     isLoading,
-    error,
-  } = useFetch<Message[]>(
-    "http://localhost:3000/messages",
-    "Failed to fetch messages"
-  );
+    isError,
+  } = useQuery({ queryKey: ["messages"], queryFn: getMessages });
 
   let content: ReactNode;
 
@@ -21,11 +18,11 @@ export default function App() {
     content = <p className="animate-pulse">Loading...</p>;
   }
 
-  if (error) {
-    content = <p>{error}</p>;
+  if (isError) {
+    content = <p className="text-red-500">Failed to fetch messages</p>;
   }
 
-  if (messages) {
+  if (messages && messages.length > 0) {
     content = <Messages messages={messages} />;
   }
 

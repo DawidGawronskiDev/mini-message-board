@@ -4,10 +4,10 @@ import { createPortal } from "react-dom";
 
 type ModalProps = {
   children: ReactNode;
-  className: string;
+  className?: string;
 };
 
-const Modal = ({ children, className }: ModalProps) => {
+const Modal = ({ children, className = "" }: ModalProps) => {
   const { isOpen } = useContext(ModalContext);
   const ref = useRef<HTMLDialogElement | null>(null);
 
@@ -18,7 +18,7 @@ const Modal = ({ children, className }: ModalProps) => {
   }, [isOpen]);
 
   return createPortal(
-    <dialog ref={ref} className={className}>
+    <dialog ref={ref} className={"px-0 fade-in " + className}>
       {children}
     </dialog>,
     document.querySelector("#modal")!

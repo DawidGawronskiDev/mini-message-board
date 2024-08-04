@@ -13,12 +13,13 @@ import { Button } from "./ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "./ui/textarea";
 import axios from "axios";
+import { useQueryClient } from "@tanstack/react-query";
 
 const messageSchema = z.object({
   user: z
     .string()
     .min(3, { message: "Username must contain at least 3 character(s)" })
-    .min(32, { message: "Username can't be longer than 3 character(s)" }),
+    .max(32, { message: "Username can't be longer than 32 character(s)" }),
   text: z
     .string()
     .min(3, { message: "Message must contain at least 3 character(s)" })
@@ -26,24 +27,28 @@ const messageSchema = z.object({
 });
 
 const MessageForm = () => {
+  const queryClient = useQueryClient();
+
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema),
     defaultValues: {
       user: "",
+      text: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof messageSchema>) => {
     const { user, text } = values;
 
-    try {
-      await axios.post("http://localhost:3000/messages", {
+    await axios
+      .post("http://localhost:3000/messages", {
         user: user,
         text: text,
-      });
-    } catch (error) {
-      console.error(error);
-    }
+      })
+      .then(() => {
+        queryClient.invalidateQueries({ queryKey: ["messages"] });
+      })
+      .catch((error) => console.error(error));
   };
 
   return (

@@ -11,7 +11,7 @@ const Messages = ({ messages }: MessagesProps) => {
     <ul className="space-y-6 my-2">
       {messages.map((message, index) => (
         <>
-          <Message key={message.id} message={message} />
+          <Message key={message.id} message={message} index={index} />
           {index < messages.length - 1 && <Separator />}
         </>
       ))}

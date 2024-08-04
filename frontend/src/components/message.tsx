@@ -4,11 +4,12 @@ import Avatar from "./avatar";
 
 type MessageProps = {
   message: Message;
+  index: number;
 };
 
-const Message = ({ message }: MessageProps) => {
+const Message = ({ message, index }: MessageProps) => {
   return (
-    <li>
+    <li style={{ animationDelay: index * 100 + "ms" }} className={`fade-in`}>
       <div className="grid grid-cols-[40px_1fr] gap-4">
         <Avatar className="row-span-2" />
         <div>

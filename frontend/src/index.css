@@ -61,6 +61,17 @@
   }
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(33%);
+  }
+  to {
+    opacity: 100;
+    transform: translateY(0);
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -68,9 +79,8 @@
   body {
     @apply bg-background text-foreground;
   }
-  .message {
-    display: grid;
-    grid-template-columns: 40px 1fr;
-    gap: 1.5rem;
+  .fade-in {
+    opacity: 0;
+    animation: fade-in 0.2s ease-in-out forwards;
   }
 }
