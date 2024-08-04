@@ -1,9 +1,10 @@
 import { type ReactNode } from "react";
-import Messages from "./components/messages";
+import { getMessages } from "./utils/http";
+import { useQuery } from "@tanstack/react-query";
 import Header from "./components/header";
 import MessageModal from "./components/message-modal";
-import { useQuery } from "@tanstack/react-query";
-import { getMessages } from "./utils/http";
+
+import MessagesContent from "./components/messages-content";
 
 export default function App() {
   const {
@@ -23,7 +24,7 @@ export default function App() {
   }
 
   if (messages && messages.length > 0) {
-    content = <Messages messages={messages} />;
+    content = <MessagesContent messages={messages} />;
   }
 
   if (messages && messages.length === 0) {
